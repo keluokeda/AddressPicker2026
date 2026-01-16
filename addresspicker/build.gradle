@@ -14,7 +14,7 @@ afterEvaluate {
                 from components.release
 
                 // You can then customize attributes of the publication as shown below.
-                groupId = 'com.ke.addresspicker'
+                groupId = 'com.ke'
                 artifactId = 'addresspicker'
                 version = '1.0'
             }
@@ -23,7 +23,7 @@ afterEvaluate {
                 // Applies the component for the debug build variant.
                 from components.debug
 
-                groupId = 'com.ke.addresspicker'
+                groupId = 'com.ke'
                 artifactId = 'addresspicker'
                 version = '1.0'
             }
