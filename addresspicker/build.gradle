@@ -1,0 +1,97 @@
+plugins {
+    id 'com.android.library' // 应用插件，版本已在根项目中定义
+    id 'org.jetbrains.kotlin.android' // 包含 Parcelize 功能
+    id 'maven-publish' // 应用发布插件
+    id 'kotlin-parcelize'
+}
+
+afterEvaluate {
+    publishing {
+        publications {
+            // Creates a Maven publication called "release".
+            release(MavenPublication) {
+                // Applies the component for the release build variant.
+                from components.release
+
+                // You can then customize attributes of the publication as shown below.
+                groupId = 'com.ke.addresspicker'
+                artifactId = 'addresspicker'
+                version = '1.0'
+            }
+            // Creates a Maven publication called “debug”.
+            debug(MavenPublication) {
+                // Applies the component for the debug build variant.
+                from components.debug
+
+                groupId = 'com.ke.addresspicker'
+                artifactId = 'addresspicker'
+                version = '1.0'
+            }
+        }
+    }
+}
+
+android {
+    compileSdkVersion 36
+    namespace "com.ke.addresspicker"
+
+    defaultConfig {
+        minSdkVersion 21
+        targetSdkVersion 36
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_21
+        targetCompatibility JavaVersion.VERSION_21
+    }
+
+
+    buildFeatures {
+        viewBinding = true
+    }
+    resourcePrefix 'address_picker'
+
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['src/main/jniLibs']
+        }
+    }
+}
+
+dependencies {
+    api fileTree(dir: 'libs', include: ['*.jar'])
+
+    implementation 'androidx.core:core-ktx:1.17.0'
+    implementation 'androidx.appcompat:appcompat:1.7.1'
+    implementation 'com.google.android.material:material:1.13.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.2.1'
+    implementation "androidx.lifecycle:lifecycle-runtime-ktx:2.10.0"
+
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    testImplementation 'junit:junit:4.+'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+    implementation 'com.github.keluokeda:KePermission:v1.0.0'
+
+
+//    implementation 'com.amap.api:search:latest.integration'
+    //implementation 'com.amap.api:location:latest.integration'
+//    implementation 'com.amap.api:search:9.2.0'
+//    implementation 'com.amap.api:location:6.1.0'
+//    implementation 'com.amap.api:navi-3dmap:9.3.0_3dmap9.3.0'
+    implementation 'com.hi-dhl:binding:1.2.0'
+//    implementation 'com.amap.api:navi-3dmap:latest.integration'
+//    implementation 'com.amap.api:search:latest.integration'
+
+    implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:3.0.4'
+
+}
