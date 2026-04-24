@@ -3,6 +3,7 @@ package com.ke.addresspicker
 import android.os.Build
 import android.os.Bundle
 import android.view.View
+import androidx.activity.enableEdgeToEdge
 import androidx.annotation.ColorInt
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.graphics.ColorUtils
@@ -10,7 +11,9 @@ import com.amap.api.services.help.Tip
 
 class HostActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
+        enableEdgeToEdge()
         super.onCreate(savedInstanceState)
+
         setContentView(R.layout.address_picker_activity_host)
         setStatusBarColor(resources.getColor(android.R.color.white))
 
